@@ -6,28 +6,30 @@ Bienvenido al monorepositorio multipaquete que alberga una variedad de proyectos
 ```
 ReactProjects
 ├── Projects
-│   └── 00-hola-mundo
-│       └── node_modules
-│       └── public
-│       └── src
-│   └── 02-triqui
-│       └── node_modules
-│       └── public
-│       └── src
-│   └── 03-mouse-follower
-│       └── node_modules
-│       └── public
-│       └── src
-│   └── 04-prueba-tecnica
-│       └── node_modules
-│       └── public
-│       └── src
+│   ├── 00-hola-mundo
+│   │    ├── node_modules
+│   │    ├── public
+│   │    └── src
+│   ├── 02-triqui
+│   │    ├── node_modules
+│   │    ├── public
+│   │    └── src
+│   ├── 03-mouse-follower
+│   │    ├── node_modules
+│   │    ├── public
+│   │    └── src
+│   ├── 04-prueba-tecnica
+│   │    ├── node_modules
+│   │    ├── public
+│   │    └── src
 │   └── 05-movie-search
-│       └── node_modules
-│       └── public
-│       └── src
-└── node_modules
-└── package.json
+│        ├── node_modules
+│        ├── public
+│        └── src
+├── node_modules
+│
+├── package.json
+│
 └── readme.md
 ```
 
