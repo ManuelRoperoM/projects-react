@@ -1,0 +1,46 @@
+body{
+    background-color: rgb(43, 41, 41);
+    font-family: system-ui;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+    color: rgb(233, 225, 215);
+}
+
+section{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+img {
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 300px;
+    height: 200px;
+    box-shadow: 0px 0px 10px rgb(233, 225, 215);
+}
+
+button {
+    margin-top: 40px;
+    width: 120px;
+    height: 30px;
+    background-color: rgb(233, 225, 215);
+    color: rgb(43, 41, 41);
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: #dcd3c1; /* Cambio de color de fondo al pasar el ratón sobre el botón */
+    color: #1f1e1e; /* Cambio de color de texto al pasar el ratón sobre el botón */
+}

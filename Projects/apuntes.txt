@@ -1,0 +1,24 @@
+##Clase 2 Configuracion Manual de react
+  1. instalar las bibliotecas de react and react-dom
+  2. instalar el plugin de @vitejs/plugin-react
+  3. configuracion de vite.config.js
+  4. modificacion de entryPoint
+
+## Clase 3
+ instalacion de eslinter (standard) npm install standard -D
+ 	package.json "eslintConfig" : {
+ 		"extends": "./node_modules/standard/eslintrc.json"
+ 	}
+ 	añadir estas extenciones en .eslintrc.cjs
+ 	    'standard',
+    'standard-jsx'
+## Clase 6 apuntes
+ ejercicio hacerlo con un fetch (buscar algun api) (Por hacer).
+ useId = genera identificador unico que no cambia.
+ Contexto = esta separado y se puede acceder de manera aislada al arbol del componenentes, evita hacer el dropDrilling (taladar).
+  createContext = 
+ useReducer hook que ayuda a manejar estados simplificando estados mas complejos.
+ ejercicio guardar en localStorage lo que hay en el carrito
+ ##Clase 7 apuntes
+   DUDAS POR RESOLVER:
+     QUE ES EL POP Y PUSH STATE
