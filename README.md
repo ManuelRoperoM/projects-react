@@ -3,7 +3,7 @@
 Bienvenido al monorepositorio multipaquete que alberga una variedad de proyectos desarrollados en React. Este repositorio está organizado de manera que cada proyecto se encuentra dentro de la carpeta `react`, con su propio README detallado que explica su propósito y funcionalidades específicas.
 
 ## Estructura del Repositorio
-
+```
 ReactProjects
 ├── Projects
 │   └── 00-hola-mundo
@@ -29,6 +29,7 @@ ReactProjects
 └── node_modules
 └── package.json
 └── readme.md
+```
 
 
 ## Requisitos
