@@ -1,12 +1,17 @@
 import { ChangeEvent } from 'react'
-
+import { Icon } from '@mdi/react'
+import { mdiTrashCan } from '@mdi/js'
 interface Props {
     filterTask: (filter : string) => void,
-    pendingTask: number
+    pendingTask: number,
+    deleteCompleteTask: () => void
 }
-export const Filters : React.FC<Props> = ({ filterTask, pendingTask }) => {
+export const Filters : React.FC<Props> = ({ filterTask, pendingTask, deleteCompleteTask }) => {
   const handleFilter = (event:ChangeEvent<HTMLSelectElement>) => {
     filterTask(event.target.value)
+  }
+  const handleDelete = () => {
+    deleteCompleteTask()
   }
   return (
     <footer>
@@ -16,6 +21,7 @@ export const Filters : React.FC<Props> = ({ filterTask, pendingTask }) => {
         <option value='3'>Finish</option>
       </select>
       <p> <strong>{pendingTask}</strong> Tareas por completar</p>
+      <button type='button' title='Completed task' onClick={handleDelete}> <Icon path={mdiTrashCan} size={1} /></button>
     </footer>
   )
 }

@@ -26,25 +26,8 @@ const App: React.FC = () => {
   const [filteredToDos, setFilteredToDos] = useState(listToDos)
   const [filterValue, setFilterValue] = useState('1')
   const [numberTaskPending, setNumberTaskPending] = useState(0)
-  const handleRemove = ({ id } : TodoId): void => {
-    const newToDos = toDos.filter((task) => task.id !== id)
-    setToDos(newToDos)
-    setFilteredToDos(newToDos)
-  }
-  const handleToggleCheck = ({ id, completed }: Pick<ToDoType, 'id'|'completed'>): void => {
-    const checkedTodos = toDos.map(task => {
-      if (task.id === id) {
-        return {
-          ...task,
-          completed
-        }
-      } else {
-        return task
-      }
-    })
-    setToDos(checkedTodos)
-    setFilteredToDos(checkedTodos)
-  }
+
+  // Efectos
   useEffect(() => {
     // Handle filters tasks
     let filterToDos : listOfTodos = []
@@ -67,21 +50,38 @@ const App: React.FC = () => {
     setNumberTaskPending(taskPending)
   }, [toDos])
 
+  // Funciones
+  const handleRemove = ({ id } : TodoId): void => {
+    const newToDos = toDos.filter((task) => task.id !== id)
+    setToDos(newToDos)
+  }
+  const handleToggleCheck = ({ id, completed }: Pick<ToDoType, 'id'|'completed'>): void => {
+    const checkedTodos = toDos.map(task => {
+      if (task.id === id) {
+        return {
+          ...task,
+          completed
+        }
+      } else {
+        return task
+      }
+    })
+    setToDos(checkedTodos)
+  }
   const handleFilter = (filter : string): void => {
     setFilterValue(filter)
   }
-  // const calculateTaskPending = (): void => {
-  //   let taskPending : number = 0
-  //   toDos.forEach((element) => {
-  //     if (!element.completed) { taskPending++ }
-  //   })
-  //   setNumberTaskPending(taskPending)
-  // }
+
+  const deleteCompletedTask = (): void => {
+    const inProgresTasks = toDos.filter((task) => !task.completed)
+    setToDos(inProgresTasks)
+  }
+
   return (
     <>
       <h1>ToDo</h1>
       <ToDos toDos={filteredToDos} removeItem={handleRemove} toggleTask={handleToggleCheck} />
-      <Filters filterTask={handleFilter} pendingTask={numberTaskPending} />
+      <Filters filterTask={handleFilter} pendingTask={numberTaskPending} deleteCompleteTask={deleteCompletedTask} />
     </>
   )
 }
