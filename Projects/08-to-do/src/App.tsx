@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { ToDos } from './components/ToDos'
-import { type TodoId } from './declarations/types'
+import { type TodoId, type ToDos as ToDoType } from './declarations/types'
 const listToDos = [
   {
     id: '1',
@@ -26,13 +26,23 @@ const App: React.FC = () => {
     const newToDos = toDos.filter((task) => task.id !== id)
     setToDos(newToDos)
   }
-  // const handleCheck = (itemId: string): void => {
-
-  // }
+  const handleToggleCheck = ({ id, completed }: Pick<ToDoType, 'id'|'completed'>): void => {
+    const checkedTodos = toDos.map(task => {
+      if (task.id === id) {
+        return {
+          ...task,
+          completed
+        }
+      } else {
+        return task
+      }
+    })
+    setToDos(checkedTodos)
+  }
   return (
     <>
       <h1>ToDo</h1>
-      <ToDos toDos={toDos} removeItem={handleRemove} />
+      <ToDos toDos={toDos} removeItem={handleRemove} toggleTask={handleToggleCheck} />
     </>
   )
 }
