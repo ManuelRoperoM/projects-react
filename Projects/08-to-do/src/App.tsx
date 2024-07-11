@@ -81,7 +81,7 @@ const App: React.FC = () => {
   const numberCompletedTask = toDos.length - numberTaskPending
 
   const addTask = ({ title }: TodoTitle) : void => {
-    const newId = String(parseInt(listToDos[listToDos.length - 1].id) + 1)
+    const newId = String(parseInt(toDos[toDos.length - 1].id) + 1)
     const newTask = {
       id: newId,
       title,
