@@ -4,9 +4,10 @@ import { mdiTrashCan } from '@mdi/js'
 interface Props {
     filterTask: (filter : string) => void,
     pendingTask: number,
-    deleteCompleteTask: () => void
+    deleteCompleteTask: () => void,
+    numberCompletedTask: number
 }
-export const Filters : React.FC<Props> = ({ filterTask, pendingTask, deleteCompleteTask }) => {
+export const Footer : React.FC<Props> = ({ filterTask, pendingTask, deleteCompleteTask, numberCompletedTask }) => {
   const handleFilter = (event:ChangeEvent<HTMLSelectElement>) => {
     filterTask(event.target.value)
   }
@@ -21,7 +22,11 @@ export const Filters : React.FC<Props> = ({ filterTask, pendingTask, deleteCompl
         <option value='3'>Finish</option>
       </select>
       <p> <strong>{pendingTask}</strong> Tareas por completar</p>
-      <button type='button' title='Completed task' onClick={handleDelete}> <Icon path={mdiTrashCan} size={1} /></button>
+      {
+        numberCompletedTask > 0 && (
+          <button type='button' title='Completed task' onClick={handleDelete}> <Icon path={mdiTrashCan} size={1} /></button>
+        )
+      }
     </footer>
   )
 }

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import { ToDos } from './components/ToDos'
-import { type TodoId, type ToDos as ToDoType, type listToDos as listOfTodos } from './declarations/types'
-import { Filters } from './components/Filters'
+import { type TodoId, type ToDos as ToDoType, type listToDos as listOfTodos, TodoTitle } from './declarations/types'
+import { Footer } from './components/Footer'
+import { Header } from './components/Header'
 const listToDos = [
   {
     id: '1',
@@ -77,11 +78,25 @@ const App: React.FC = () => {
     setToDos(inProgresTasks)
   }
 
+  const numberCompletedTask = toDos.length - numberTaskPending
+
+  const addTask = ({ title }: TodoTitle) : void => {
+    const newId = String(parseInt(listToDos[listToDos.length - 1].id) + 1)
+    const newTask = {
+      id: newId,
+      title,
+      completed: false
+    }
+    const newToDos = [...toDos, newTask]
+    setToDos(newToDos)
+  }
+
   return (
     <>
-      <h1>ToDo</h1>
+
+      <Header saveToDo={addTask} />
       <ToDos toDos={filteredToDos} removeItem={handleRemove} toggleTask={handleToggleCheck} />
-      <Filters filterTask={handleFilter} pendingTask={numberTaskPending} deleteCompleteTask={deleteCompletedTask} />
+      <Footer filterTask={handleFilter} pendingTask={numberTaskPending} deleteCompleteTask={deleteCompletedTask} numberCompletedTask={numberCompletedTask} />
     </>
   )
 }
