@@ -25,7 +25,7 @@ const App: React.FC = () => {
   const [toDos, setToDos] = useState(listToDos)
   const [filteredToDos, setFilteredToDos] = useState(listToDos)
   const [filterValue, setFilterValue] = useState('1')
-
+  const [numberTaskPending, setNumberTaskPending] = useState(0)
   const handleRemove = ({ id } : TodoId): void => {
     const newToDos = toDos.filter((task) => task.id !== id)
     setToDos(newToDos)
@@ -46,6 +46,7 @@ const App: React.FC = () => {
     setFilteredToDos(checkedTodos)
   }
   useEffect(() => {
+    // Handle filters tasks
     let filterToDos : listOfTodos = []
     if (filterValue === '1') {
       filterToDos = toDos
@@ -56,14 +57,31 @@ const App: React.FC = () => {
     }
     setFilteredToDos(filterToDos)
   }, [toDos, filterValue])
+
+  useEffect(() => {
+    // Calculate pending tasks
+    let taskPending : number = 0
+    toDos.forEach((element) => {
+      if (!element.completed) { taskPending++ }
+    })
+    setNumberTaskPending(taskPending)
+  }, [toDos])
+
   const handleFilter = (filter : string): void => {
     setFilterValue(filter)
   }
+  // const calculateTaskPending = (): void => {
+  //   let taskPending : number = 0
+  //   toDos.forEach((element) => {
+  //     if (!element.completed) { taskPending++ }
+  //   })
+  //   setNumberTaskPending(taskPending)
+  // }
   return (
     <>
       <h1>ToDo</h1>
       <ToDos toDos={filteredToDos} removeItem={handleRemove} toggleTask={handleToggleCheck} />
-      <Filters filterTask={handleFilter} />
+      <Filters filterTask={handleFilter} pendingTask={numberTaskPending} />
     </>
   )
 }

@@ -5,8 +5,8 @@
 - [-] Añadir estilos del TodoMVC
 - [x] Listar todos los TODOs
 - [x] Poder borrar un TODO
-- [ ] Marcar TODO como completado
-- [ ] Añadir forma de filtrar TODOs (Footer)
+- [x] Marcar TODO como completado
+- [x] Añadir forma de filtrar TODOs (Footer)
 - [ ] Mostrar número de TODOs pendientes (Footer)
 - [ ] Añadir forma de borrar todos los TODOs completados
 - [ ] Crear Header con input (Header)
