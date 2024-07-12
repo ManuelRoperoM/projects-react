@@ -91,11 +91,25 @@ const App: React.FC = () => {
     setToDos(newToDos)
   }
 
+  const updateTitle = ({ id, title } : Pick<ToDoType, 'id'|'title'>) : void => {
+    const toDoUpdateTitle = toDos.map((task) => {
+      if (task.id === id) {
+        return {
+          ...task,
+          title
+        }
+      } else {
+        return task
+      }
+    })
+    setToDos(toDoUpdateTitle)
+  }
+
   return (
     <>
 
       <Header saveToDo={addTask} />
-      <ToDos toDos={filteredToDos} removeItem={handleRemove} toggleTask={handleToggleCheck} />
+      <ToDos toDos={filteredToDos} removeItem={handleRemove} toggleTask={handleToggleCheck} changeTitle={updateTitle} />
       <Footer filterTask={handleFilter} pendingTask={numberTaskPending} deleteCompleteTask={deleteCompletedTask} numberCompletedTask={numberCompletedTask} />
     </>
   )
