@@ -9,11 +9,11 @@ interface Props {
 }
 export const ToDos = forwardRef<HTMLUListElement, Props>(({ toDos, removeItem, toggleTask, changeTitle }, ref) => {
   return (
-    <ul ref={ref}>
+    <ul className='tasks' ref={ref}>
       {
         toDos.map((task) => {
           return (
-            <li key={task.id}>
+            <li className='task' key={task.id}>
               <ToDo
                 id={task.id}
                 title={task.title}

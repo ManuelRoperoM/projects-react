@@ -30,15 +30,18 @@ export const ToDo : React.FC<Props> = ({ id, title, completed, removeItem, toggl
   }
 
   return (
-    <div>
-      <input id={id} type='checkbox' checked={completed} onChange={toggleCheck} />
-      {
+    <div className='task-check'>
+      <div className='label-input'>
+        <input className='check-task' id={id} type='checkbox' checked={completed} onChange={toggleCheck} />
+        {
         doubleClick
-          ? <input value={updateTitle} onKeyDown={handleKeyDown} onChange={(event) => { setUpdateTitle(event.target.value) }} />
-          : <label onDoubleClick={handleDoubleClick}>{updateTitle}</label>
-      }
-
-      <button onClick={() => { removeItem({ id }) }}>x</button>
+          ? <input className='input-task' value={updateTitle} onKeyDown={handleKeyDown} onChange={(event) => { setUpdateTitle(event.target.value) }} autoFocus />
+          : <label className='label-task' onDoubleClick={handleDoubleClick}>{updateTitle}</label>
+        }
+      </div>
+      <div className='task-btn'>
+        <button className='task-btn' onClick={() => { removeItem({ id }) }}>x</button>
+      </div>
     </div>
   )
 }

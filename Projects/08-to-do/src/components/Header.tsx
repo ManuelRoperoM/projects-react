@@ -13,7 +13,7 @@ export const Header : React.FC<Props> = ({ saveToDo }) => {
   }
   return (
     <header className='header'>
-      <h1>ToDo</h1>
+      <h1>To<strong>Do</strong></h1>
       <form className='form' onSubmit={handleSubmit}>
         <input
           className='input-header'
