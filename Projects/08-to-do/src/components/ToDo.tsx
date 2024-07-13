@@ -24,7 +24,7 @@ export const ToDo : React.FC<Props> = ({ id, title, completed, removeItem, toggl
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) : void => {
     if (event.key === 'Enter') {
-      changeTitle({ id, title })
+      changeTitle({ id, title: updateTitle })
       setDoubleClick(false)
     }
   }

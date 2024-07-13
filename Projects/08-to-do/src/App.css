@@ -1,42 +1,71 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Nunito+Sans:opsz,wdth@6..12,87.5&display=swap');
+:root {
+  --color-text: rgb(75, 72, 72);
+  --color-text-scundary: rgb(36, 35, 35);
+  --color-purple: rgb(153, 165, 207);
+  --color-background: rgb(227,233,255);
+  --fuente-inter: "Inter", sans-serif;
+  --fuente-nunito: "Nunito Sans", sans-serif;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+*{
+  padding: 0;
+  margin: 0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+html{
+  font-size: 16px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.to-do-app{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* background-color: red; */
+  padding: 40px 0px;
 }
 
-.card {
-  padding: 2em;
+.to-do-app .content{
+  /* background-color: blue; */
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.read-the-docs {
-  color: #888;
+.header{
+  font-family: var(--fuente-inter);
+  font-size: 2.5rem;
+  color: var(--color-text);
+  /* background-color: aliceblue; */
+}
+
+.header .form{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* background-color: red; */
+  margin: 5px 0px;
+}
+
+.header .form .input-header{
+  width: 90%;
+  height: 20px;
+  display: flex;
+  font-family: var(--fuente-nunito);
+  font-size: 1rem;
+  border: 1px solid rgb(100, 98, 98);
+  border-radius: 6px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  padding-left: 5.5px;
+  color: var(--color-text);
+}
+
+.header .form .input-header:focus{
+  border-color: var(--color-purple);
+  background-color: var(--color-background);
+  font-family: var(--fuente-nunito);
+  padding-left: 5.5px;
 }

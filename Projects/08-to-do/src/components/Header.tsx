@@ -12,10 +12,11 @@ export const Header : React.FC<Props> = ({ saveToDo }) => {
     setTitleTask('')
   }
   return (
-    <header>
+    <header className='header'>
       <h1>ToDo</h1>
-      <form onSubmit={handleSubmit}>
+      <form className='form' onSubmit={handleSubmit}>
         <input
+          className='input-header'
           onChange={(event) => { setTitleTask(event.target.value) }}
           value={titleTask}
           placeholder='New Task'

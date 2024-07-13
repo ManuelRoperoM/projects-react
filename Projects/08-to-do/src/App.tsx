@@ -1,56 +1,14 @@
-import { useEffect, useState } from 'react'
 import './App.css'
 import { ToDos } from './components/ToDos'
-import { type TodoId, type ToDos as ToDoType, type listToDos as listOfTodos, TodoTitle } from './declarations/types'
+import { type TodoId, type ToDos as ToDoType, TodoTitle } from './declarations/types'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
-const listToDos = [
-  {
-    id: '1',
-    title: 'Tarea 1',
-    completed: false
-  },
-  {
-    id: '2',
-    title: 'Tarea 2',
-    completed: false
-  },
-  {
-    id: '3',
-    title: 'Tarea 3',
-    completed: false
-  }
-]
+import { useFilters } from './hooks/useFilters'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 const App: React.FC = () => {
-  const [toDos, setToDos] = useState(listToDos)
-  const [filteredToDos, setFilteredToDos] = useState(listToDos)
-  const [filterValue, setFilterValue] = useState('1')
-  const [numberTaskPending, setNumberTaskPending] = useState(0)
-
-  // Efectos
-  useEffect(() => {
-    // Handle filters tasks
-    let filterToDos : listOfTodos = []
-    if (filterValue === '1') {
-      filterToDos = toDos
-    } else if (filterValue === '2') {
-      filterToDos = toDos.filter((task) => !task.completed)
-    } else if (filterValue === '3') {
-      filterToDos = toDos.filter((task) => task.completed)
-    }
-    setFilteredToDos(filterToDos)
-  }, [toDos, filterValue])
-
-  useEffect(() => {
-    // Calculate pending tasks
-    let taskPending : number = 0
-    toDos.forEach((element) => {
-      if (!element.completed) { taskPending++ }
-    })
-    setNumberTaskPending(taskPending)
-  }, [toDos])
-
+  const { toDos, setToDos, filteredToDos, setFilterValue, numberTaskPending } = useFilters()
+  const [parent] = useAutoAnimate()
   // Funciones
   const handleRemove = ({ id } : TodoId): void => {
     const newToDos = toDos.filter((task) => task.id !== id)
@@ -81,7 +39,7 @@ const App: React.FC = () => {
   const numberCompletedTask = toDos.length - numberTaskPending
 
   const addTask = ({ title }: TodoTitle) : void => {
-    const newId = String(parseInt(toDos[toDos.length - 1].id) + 1)
+    const newId = toDos.length > 0 ? String(parseInt(toDos[toDos.length - 1].id) + 1) : '1'
     const newTask = {
       id: newId,
       title,
@@ -102,15 +60,19 @@ const App: React.FC = () => {
         return task
       }
     })
+
     setToDos(toDoUpdateTitle)
   }
 
   return (
     <>
-
-      <Header saveToDo={addTask} />
-      <ToDos toDos={filteredToDos} removeItem={handleRemove} toggleTask={handleToggleCheck} changeTitle={updateTitle} />
-      <Footer filterTask={handleFilter} pendingTask={numberTaskPending} deleteCompleteTask={deleteCompletedTask} numberCompletedTask={numberCompletedTask} />
+      <div className='to-do-app'>
+        <div className='content'>
+          <Header saveToDo={addTask} />
+          <ToDos ref={parent} toDos={filteredToDos} removeItem={handleRemove} toggleTask={handleToggleCheck} changeTitle={updateTitle} />
+          <Footer filterTask={handleFilter} pendingTask={numberTaskPending} deleteCompleteTask={deleteCompletedTask} numberCompletedTask={numberCompletedTask} />
+        </div>
+      </div>
     </>
   )
 }

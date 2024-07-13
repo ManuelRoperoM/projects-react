@@ -1,14 +1,15 @@
 import { type TodoId, type listToDos, type ToDos as ToDoTypes } from '../declarations/types'
 import { ToDo } from './ToDo'
+import { forwardRef } from 'react'
 interface Props {
   toDos: listToDos,
   removeItem: ({ id }:TodoId) => void,
   toggleTask:({ id, completed }: Pick<ToDoTypes, 'id' | 'completed'>) => void,
-  changeTitle: ({ id, title }: Pick<ToDoTypes, 'id' | 'title' >) => void
+  changeTitle: ({ id, title }: Pick<ToDoTypes, 'id' | 'title' >) => void,
 }
-export const ToDos : React.FC<Props> = ({ toDos, removeItem, toggleTask, changeTitle }) => {
+export const ToDos = forwardRef<HTMLUListElement, Props>(({ toDos, removeItem, toggleTask, changeTitle }, ref) => {
   return (
-    <ul>
+    <ul ref={ref}>
       {
         toDos.map((task) => {
           return (
@@ -28,3 +29,4 @@ export const ToDos : React.FC<Props> = ({ toDos, removeItem, toggleTask, changeT
     </ul>
   )
 }
+)
